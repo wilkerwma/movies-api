@@ -11,7 +11,7 @@ class GetMobvieViewingDataCommandTest extends TestCase
      *
      * @return void
      */
-    public function testGetMovieViewingDataCommand()
+    public function testGetMovieViewingDataByQueryCommand()
     {
         $movies = [
             ['title' => 'Fury', 'year' => '2014'],
@@ -19,15 +19,15 @@ class GetMobvieViewingDataCommandTest extends TestCase
             ['title' => 'Spy Game', 'year' => '2001'],
             ['title' => 'The Mexican', 'year' => '2001'],
             ['title' => 'Snatch', 'year' => '2000'],
-            ['title' => 'Ocean\'s Eleven', 'year' => '2001'],
-            ['title' => 'Ocean\'s Twelve', 'year' => '2004'],
-            ['title' => 'Ocean\'s Thirteen', 'year' => '2007'],
+            ['title' => "Ocean's Eleven", 'year' => '2001'],
+            ['title' => "Ocean's Twelve", 'year' => '2004'],
+            ['title' => "Ocean's Thirteen", 'year' => '2007'],
             ['title' => 'Fight Club', 'year' => '1999'],
             ['title' => 'Troy', 'year' => '2004'],
             ['title' => 'Sleepers', 'year' => '1996'],
             ['title' => 'Seven Years in Tibet', 'year' => '1997'],
             ['title' => 'Babel', 'year' => '2006'],
-            ['title' => 'The Devil\'s Own', 'year' => '1997'],
+            ['title' => "The Devil's Own", 'year' => '1997'],
             ['title' => 'The Curious Case of Benjamin Button', 'year' => '2008'],
             ['title' => 'Burn After Reading', 'year' => '2008'],
             ['title' => 'Sinbad: Legend of the Seven Seas', 'year' => '2003'],
@@ -44,12 +44,12 @@ class GetMobvieViewingDataCommandTest extends TestCase
             $rawTitle = $movie['title'];
             $year = $movie['year'];
 
-            $this->artisan("get-viewing-data $commandTitle $year")
-                ->expectsOutput("Title: $rawTitle")
-                ->expectsOutput("Year: $year")
+            $this->artisan("get-viewing-data-by-query $commandTitle $year")
+                ->expectsOutput("title: $rawTitle")
+                ->expectsOutput("year: $year")
                 ->assertExitCode(0);
 
-            $this->assertCommandCalled("get-viewing-data $commandTitle $year");
+            $this->assertCommandCalled("get-viewing-data-by-query $commandTitle $year");
         }
     }
 }
